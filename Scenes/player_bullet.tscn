@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dmnph8f7kqqjy"]
+
+[ext_resource type="Script" uid="uid://dgcdvq10nxqub" path="res://Scenes/player_bullet.gd" id="1_3m2mg"]
+[ext_resource type="Texture2D" uid="uid://dww4omryxl768" path="res://icon.svg" id="1_bg8x2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3m2mg"]
+size = Vector2(6, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3m2mg"]
+radius = 2.828427
+
+[node name="PlayerBullet" type="CharacterBody2D" unique_id=2092041704]
+collision_layer = 131
+collision_mask = 131
+script = ExtResource("1_3m2mg")
+
+[node name="BulletCollision" type="CollisionShape2D" parent="." unique_id=857586436]
+shape = SubResource("RectangleShape2D_3m2mg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1780781206]
+scale = Vector2(0.046875, 0.046875)
+texture = ExtResource("1_bg8x2")
+
+[node name="BulletArea" type="Area2D" parent="." unique_id=1103381337]
+collision_layer = 2
+collision_mask = 2
+
+[node name="BulletAreaShape" type="CollisionShape2D" parent="BulletArea" unique_id=1685244497]
+shape = SubResource("CircleShape2D_3m2mg")
+
+[connection signal="body_entered" from="BulletArea" to="." method="_on_bullet_area_body_entered"]

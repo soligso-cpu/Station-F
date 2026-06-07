@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bjwmo0lwn23sp"]
+
+[ext_resource type="Script" uid="uid://dh4sxs0xtnjkc" path="res://Scripts/Player.gd" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://dww4omryxl768" path="res://icon.svg" id="2_cvnsp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
+size = Vector2(11, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(14, 11)
+
+[node name="Player" type="CharacterBody2D" unique_id=1165273323]
+script = ExtResource("1_v0iea")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1843675072]
+position = Vector2(1.25, 0)
+scale = Vector2(0.08984375, 0.0703125)
+texture = ExtResource("2_cvnsp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=744785750]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_6t5aa")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1677280878]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1285243880]
+
+[node name="BounceArea" type="CollisionShape2D" parent="Area2D" unique_id=92575091]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_cvnsp")
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

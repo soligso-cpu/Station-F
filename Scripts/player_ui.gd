@@ -20,8 +20,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print($"../..".room)
-	print("heloooo")
+	
 	if $"../..".room == $"../..".current_room.STARTING_ROOM:
 		$Control/HBoxContainer/Label.text = str("Engine room")
 	elif  $"../..".room == $"../..".current_room.WING_1:

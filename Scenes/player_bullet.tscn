@@ -16,6 +16,7 @@ script = ExtResource("1_3m2mg")
 
 [node name="BulletCollision" type="CollisionShape2D" parent="." unique_id=857586436]
 shape = SubResource("RectangleShape2D_3m2mg")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1780781206]
 scale = Vector2(0.046875, 0.046875)

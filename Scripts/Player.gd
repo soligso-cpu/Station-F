@@ -14,6 +14,7 @@ enum current_room {
 	MEDBAY,
 	HALLWAY
 }
+var cling_state = false
 
 func _physics_process(delta: float) -> void:
 	for Area2D in $Area2D.get_overlapping_areas():
@@ -26,11 +27,28 @@ func _physics_process(delta: float) -> void:
 		if Area2D.name == "MedicalRoom":
 			$"..".room = current_room.MEDBAY
 			
+	if Input.is_action_just_pressed("WallPush"):
+		if cling_state == true:
+			velocity_decrease = 0.96
+			print("wep wep")
+			
+			direction = global_position.direction_to(get_global_mouse_position())
+			print(direction)
+			velocity = direction * SPEED
+			$CooldownTimer.start()
+			cling_state = false
+		
+		
+		#direction_bounce_set = false
+	
+	
+	
+	
 	if Input.is_action_just_pressed("Shoot"):
 		velocity_decrease = 0.98
 		print("pew pew")
-		if direction_bounce_set == false:
-			direction = global_position.direction_to(get_global_mouse_position())
+		
+		direction = global_position.direction_to(get_global_mouse_position())
 		print(direction)
 		velocity = direction * -SPEED
 		$CooldownTimer.start()
@@ -40,7 +58,17 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity * velocity_decrease
 	move_and_collide(velocity)
 	rotation = global_position.direction_to(get_global_mouse_position()).angle()
+	
 
+	for body in $Area2D.get_overlapping_bodies():
+		if body.name == "TileMapLayer":
+		#print("boing boing", body.name)
+	#	velocity = -velocity 
+			if cling_state == false:
+				velocity * 0
+				cling_state = true
+		else:
+			cling_state = false
 	
 func _on_cooldown_timer_timeout() -> void:
 	can_shoot = true
@@ -52,8 +80,10 @@ func _on_cooldown_timer_timeout() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "TileMapLayer":
 		#print("boing boing", body.name)
-		velocity = -velocity 
-		
+	#	velocity = -velocity 
+		if cling_state == false:
+			velocity * 0
+			cling_state = true
 		velocity_decrease = 0.97
 	elif (body.name == "PlayerBullet"):
 		#print("THIS IS IT")

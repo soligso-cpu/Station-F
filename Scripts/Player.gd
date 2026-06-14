@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 3
 signal player_shoot (player: CharacterBody2D, dir: Vector2)
+
 var can_shoot = true
 var velocity_decrease = 1
 var direction_bounce_set = false
@@ -26,6 +27,9 @@ func _physics_process(delta: float) -> void:
 			$"..".room = current_room.WING_2
 		if Area2D.name == "MedicalRoom":
 			$"..".room = current_room.MEDBAY
+		if $DialougueLayer.current_room != $"..".room:
+			print("oioioioi")
+			$DialougueLayer.current_room != $"..".room
 			
 	if Input.is_action_just_pressed("WallPush"):
 		if cling_state == true:
@@ -50,10 +54,14 @@ func _physics_process(delta: float) -> void:
 		
 		direction = global_position.direction_to(get_global_mouse_position())
 		print(direction)
-		velocity = direction * -SPEED
+		if cling_state == false:
+			velocity = direction * -SPEED
+			player_shoot.emit(self, direction)
+		else:
+			velocity = direction * SPEED
+
 		$CooldownTimer.start()
 		can_shoot = false
-		player_shoot.emit(self, direction)
 		#direction_bounce_set = false
 	velocity = velocity * velocity_decrease
 	move_and_collide(velocity)
@@ -65,7 +73,6 @@ func _physics_process(delta: float) -> void:
 		#print("boing boing", body.name)
 	#	velocity = -velocity 
 			if cling_state == false:
-				velocity * 0
 				cling_state = true
 		else:
 			cling_state = false
@@ -82,7 +89,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		#print("boing boing", body.name)
 	#	velocity = -velocity 
 		if cling_state == false:
-			velocity * 0
 			cling_state = true
 		velocity_decrease = 0.97
 	elif (body.name == "PlayerBullet"):

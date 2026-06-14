@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bfsp2c8ai0ync"]
+
+[ext_resource type="Texture2D" uid="uid://cf2oa1oqde7mp" path="res://Assets/Background1.webp" id="1_q85f0"]
+[ext_resource type="FontFile" uid="uid://dw6yj3fcq0d63" path="res://Assets/pixelated-loveNew.ttf" id="2_p1mel"]
+[ext_resource type="Script" uid="uid://bq84kln1do2bb" path="res://Scenes/dialouge_box.gd" id="3_p1mel"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u5uhc"]
+font = ExtResource("2_p1mel")
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=126729632]
+script = ExtResource("3_p1mel")
+
+[node name="Control" type="Control" parent="." unique_id=1476491408]
+layout_mode = 3
+anchor_top = 0.72200006
+anchor_right = 1.01
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 0.14395142
+offset_right = -8.52002
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1147217347]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_q85f0")
+expand_mode = 3
+
+[node name="DialougeBox" type="Label" parent="Control" unique_id=1702516450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "does this work OH "
+label_settings = SubResource("LabelSettings_u5uhc")
+
+[node name="StartDelay" type="Timer" parent="." unique_id=974153787]
+
+[node name="ExpireTimer" type="Timer" parent="." unique_id=1729359970]

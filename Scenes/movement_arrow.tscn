@@ -2,17 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://dww4omryxl768" path="res://icon.svg" id="1_3gt82"]
 [ext_resource type="Script" uid="uid://b54upssi2od4c" path="res://Scenes/Levels/movement_arrow.gd" id="2_eiud2"]
+[ext_resource type="Texture2D" uid="uid://bcorw33md5at4" path="res://Assets/MovementIndicator(NoAnim).webp" id="2_p8uj4"]
 
 [node name="Node2D" type="Node2D" unique_id=275785741]
 script = ExtResource("2_eiud2")
 
 [node name="MovementArrow" type="Sprite2D" parent="." unique_id=1243544488]
-position = Vector2(7.9999995, 0)
-rotation = 0.017453292
-scale = Vector2(0.171875, 0.0390625)
-texture = ExtResource("1_3gt82")
+position = Vector2(11.000001, -1.1920929e-07)
+rotation = 1.5707964
+scale = Vector2(0.008232492, 0.010894392)
+texture = ExtResource("2_p8uj4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=157645634]
+visible = false
 position = Vector2(14, 0)
 scale = Vector2(0.04687499, 0.06640625)
 texture = ExtResource("1_3gt82")

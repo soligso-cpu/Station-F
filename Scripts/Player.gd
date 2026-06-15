@@ -13,6 +13,11 @@ enum current_room {
 	WING_1,
 	WING_2,
 	MEDBAY,
+	WORKSHOP,
+	ARMORY,
+	LIVING_ROOM,
+	MEETING_ROOM,
+	BED_1,
 	HALLWAY
 }
 var cling_state = false
@@ -27,9 +32,21 @@ func _physics_process(delta: float) -> void:
 			$"..".room = current_room.WING_2
 		if Area2D.name == "MedicalRoom":
 			$"..".room = current_room.MEDBAY
+		if Area2D.name == "Bedroom1":
+			$"..".room = current_room.BED_1
+		if Area2D.name == "Armory":
+			$"..".room = current_room.ARMORY
+		if Area2D.name == "Workshop":
+			$"..".room = current_room.WORKSHOP
+		if Area2D.name == "LivingRoom":
+			$"..".room = current_room.LIVING_ROOM
+		if Area2D.name == "MeetingRoom":
+			$"..".room = current_room.MEETING_ROOM
 		if $DialougueLayer.current_room != $"..".room:
 			print("oioioioi")
-			$DialougueLayer.current_room != $"..".room
+			$DialougueLayer.current_room = $"..".room
+			$DialougueLayer.room_changed = true
+		
 			
 	if Input.is_action_just_pressed("WallPush"):
 		if cling_state == true:

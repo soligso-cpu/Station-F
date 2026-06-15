@@ -7,6 +7,11 @@ enum current_room {
 	WING_1,
 	WING_2,
 	MEDBAY,
+	WORKSHOP,
+	ARMORY,
+	LIVING_ROOM,
+	MEETING_ROOM,
+	BED_1,
 	HALLWAY
 }
 var room = current_room.STARTING_ROOM
@@ -36,43 +41,7 @@ func _on_player_player_shoot(player: CharacterBody2D, dir: Vector2) -> void:
 
 
 
-#theres definetley a better way to do this,, but after trail and error
-# i sure as hell son't know it
-func _on_starting_room_body_entered(body: Node2D) -> void:
-	room = current_room.STARTING_ROOM
-	print(room)
 
-
-
-func _on_starting_room_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
-		room = current_room.HALLWAY
-		print(room)
-
-
-func _on_wing_1_body_entered(body: Node2D) -> void:
-	if body.name == "Player":	
-		room = current_room.WING_1
-		
-		print(room)
-
-func _on_wing_1_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
-		room = current_room.HALLWAY
-		print(room)
-
-
-
-func _on_wing_2_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		room = current_room.WING_2
-
-		print(room)
-
-func _on_wing_2_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
-		room = current_room.HALLWAY
-		print(room)
 
 
 func _on_wall_break() -> void:

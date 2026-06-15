@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dww4omryxl768" path="res://icon.svg" id="2_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://cexaqfug60si4" path="res://Assets/lighy.webp" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://4ylwyttsr14x" path="res://Assets/light.webp" id="4_vgqql"]
+[ext_resource type="Texture2D" uid="uid://ddm5ck0nfkstv" path="res://Assets/PlayerGun(NoAnim).webp" id="5_fkybt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(11, 8)
@@ -45,6 +46,12 @@ one_shot = true
 
 [node name="BounceArea" type="CollisionShape2D" parent="Area2D" unique_id=92575091]
 shape = SubResource("RectangleShape2D_vgqql")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=125857681]
+position = Vector2(10, 1)
+scale = Vector2(0.0091666365, 0.00770836)
+texture = ExtResource("5_fkybt")
+flip_h = true
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

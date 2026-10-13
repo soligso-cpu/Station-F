@@ -643,10 +643,8 @@ position = Vector2(32, 23)
 zoom = Vector2(5, 5)
 
 [node name="UIlayer" parent="Player" unique_id=514651991 instance=ExtResource("4_iixi8")]
-visible = false
 
 [node name="DialougueLayer" parent="Player" unique_id=126729632 instance=ExtResource("7_jv26f")]
-visible = false
 
 [node name="Node2D2" parent="." unique_id=275785741 instance=ExtResource("6_xgxfi")]
 position = Vector2(32, 23)

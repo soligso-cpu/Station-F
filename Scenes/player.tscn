@@ -2,38 +2,30 @@
 
 [ext_resource type="Script" uid="uid://dh4sxs0xtnjkc" path="res://Scripts/Player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://dww4omryxl768" path="res://icon.svg" id="2_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://b5ei2f4jgkfoo" path="res://Assets/flashlight.jpg" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://cexaqfug60si4" path="res://Assets/lighy.webp" id="3_6t5aa"]
-[ext_resource type="Texture2D" uid="uid://4ylwyttsr14x" path="res://Assets/light.webp" id="4_vgqql"]
 [ext_resource type="Texture2D" uid="uid://ddm5ck0nfkstv" path="res://Assets/PlayerGun(NoAnim).webp" id="5_fkybt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
-size = Vector2(11, 8)
+size = Vector2(9.5, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqql"]
-size = Vector2(12, 10)
+size = Vector2(14, 13)
 
 [node name="Player" type="CharacterBody2D" unique_id=1165273323]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_v0iea")
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1097200906]
-scale = Vector2(0.5, 0.5)
-energy = 1.48
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-texture = ExtResource("3_6t5aa")
-
 [node name="Flashlight" type="PointLight2D" parent="." unique_id=1100001452]
-visible = false
-position = Vector2(0, -98)
+position = Vector2(-98, 9.536743e-07)
 rotation = 1.5707964
-scale = Vector2(0.19873068, 0.20559159)
-energy = 4.16
-texture = ExtResource("4_vgqql")
+scale = Vector2(0.1436531, 0.2543683)
+energy = 2.07
+texture = ExtResource("2_fkybt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1843675072]
-scale = Vector2(0.08984375, 0.0703125)
+scale = Vector2(0.08984375, 0.08984375)
 texture = ExtResource("2_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=744785750]
@@ -52,6 +44,15 @@ position = Vector2(10, 1)
 scale = Vector2(0.0091666365, 0.00770836)
 texture = ExtResource("5_fkybt")
 flip_h = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1097200906]
+visible = false
+position = Vector2(3.8146973e-06, 3.8146973e-06)
+scale = Vector2(0.21875, 0.203125)
+energy = 1.48
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("3_6t5aa")
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

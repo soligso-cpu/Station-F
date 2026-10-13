@@ -23,6 +23,7 @@ enum current_room {
 var cling_state = false
 
 func _physics_process(delta: float) -> void:
+	
 	for Area2D in $Area2D.get_overlapping_areas():
 		if Area2D.name == "StartingRoom":
 			$"..".room = current_room.STARTING_ROOM

@@ -28,7 +28,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if room == 0 and starting_room_hits_left < 1:
+		print("Starting room exploded")
 
 func _on_player_player_shoot(player: CharacterBody2D, dir: Vector2) -> void:
 	var bullet = PLAYER_BULLET_SCENE.instantiate()

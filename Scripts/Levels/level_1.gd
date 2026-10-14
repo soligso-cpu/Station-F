@@ -30,6 +30,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if room == 0 and starting_room_hits_left < 1:
 		print("Starting room exploded")
+		#Run game-over function, make some explosions or sum
 
 func _on_player_player_shoot(player: CharacterBody2D, dir: Vector2) -> void:
 	var bullet = PLAYER_BULLET_SCENE.instantiate()
@@ -77,3 +78,6 @@ func _on_player_bullet_break_wall(bullet: CharacterBody2D) -> void:
 
 	else:
 		print("welcome to the invinciblle hallway")
+
+func _room_collapse():
+	

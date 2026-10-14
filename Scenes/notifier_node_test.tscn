@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bfn7d57j2uttt"]
+
+[node name="NotifierNodeTest" type="Node2D" unique_id=1019431313]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=15570776]
+position = Vector2(15, 7)

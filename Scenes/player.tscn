@@ -5,12 +5,23 @@
 [ext_resource type="Texture2D" uid="uid://b5ei2f4jgkfoo" path="res://Assets/flashlight.jpg" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://cexaqfug60si4" path="res://Assets/lighy.webp" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://ddm5ck0nfkstv" path="res://Assets/PlayerGun(NoAnim).webp" id="5_fkybt"]
+[ext_resource type="PackedScene" uid="uid://dtomanlm7u1g1" path="res://Scenes/player_ui.tscn" id="6_x3wgy"]
+[ext_resource type="PackedScene" uid="uid://bfsp2c8ai0ync" path="res://Scenes/canvas_layer.tscn" id="7_3smsa"]
+[ext_resource type="PackedScene" uid="uid://c0mvik8yhj0cj" path="res://Scenes/multiplayer_ui.tscn" id="8_8erm5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(9.5, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqql"]
 size = Vector2(14, 13)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fkybt"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" unique_id=1165273323]
 collision_layer = 3
@@ -53,6 +64,15 @@ energy = 1.48
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("3_6t5aa")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2059720239]
+replication_config = SubResource("SceneReplicationConfig_fkybt")
+
+[node name="UIlayer" parent="." unique_id=514651991 instance=ExtResource("6_x3wgy")]
+
+[node name="DialougueLayer" parent="." unique_id=126729632 instance=ExtResource("7_3smsa")]
+
+[node name="MultiplayerUI" parent="DialougueLayer" unique_id=806208750 instance=ExtResource("8_8erm5")]
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

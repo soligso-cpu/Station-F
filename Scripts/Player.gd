@@ -22,9 +22,16 @@ enum current_room {
 }
 var cling_state = false
 
+
+func _enter_tree():
+	set_multiplayer_authority(name.to_int())
+
+
+
 func _physics_process(delta: float) -> void:
 	
 	for Area2D in $Area2D.get_overlapping_areas():
+		if not is_multiplayer_authority(): return
 		if Area2D.name == "StartingRoom":
 			$"..".room = current_room.STARTING_ROOM
 		if Area2D.name == "Wing1":
@@ -43,10 +50,10 @@ func _physics_process(delta: float) -> void:
 			$"..".room = current_room.LIVING_ROOM
 		if Area2D.name == "MeetingRoom":
 			$"..".room = current_room.MEETING_ROOM
-		if $DialougueLayer.current_room != $"..".room:
-			print("oioioioi")
-			$DialougueLayer.current_room = $"..".room
-			$DialougueLayer.room_changed = true
+		#if $DialougueLayer.current_room != $"..".room:
+		#	print("oioioioi")
+			#$DialougueLayer.current_room = $"..".room
+			#$DialougueLayer.room_changed = true
 		
 			
 	if Input.is_action_just_pressed("WallPush"):
@@ -55,7 +62,7 @@ func _physics_process(delta: float) -> void:
 			print("wep wep")
 			
 			direction = global_position.direction_to(get_global_mouse_position())
-			print(direction)
+			print(direction, cling_state)
 			velocity = direction * SPEED
 			$CooldownTimer.start()
 			cling_state = false
@@ -71,10 +78,12 @@ func _physics_process(delta: float) -> void:
 		print("pew pew")
 		
 		direction = global_position.direction_to(get_global_mouse_position())
-		print(direction)
+		print(direction, cling_state)
 		if cling_state == false:
 			velocity = direction * -SPEED
+			
 			player_shoot.emit(self, direction)
+			print("signal ran")
 		else:
 			velocity = direction * SPEED
 

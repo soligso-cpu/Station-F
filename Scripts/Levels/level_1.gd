@@ -33,6 +33,7 @@ func _process(delta: float) -> void:
 		#Run game-over function, make some explosions or sum
 
 func _on_player_player_shoot(player: CharacterBody2D, dir: Vector2) -> void:
+	print("HUHHHHHHHHHHH")
 	var bullet = PLAYER_BULLET_SCENE.instantiate()
 	$PlayerBullets.add_child(bullet)
 	bullet.global_position = player.global_position
@@ -80,4 +81,4 @@ func _on_player_bullet_break_wall(bullet: CharacterBody2D) -> void:
 		print("welcome to the invinciblle hallway")
 
 func _room_collapse():
-	
+	pass

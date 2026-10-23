@@ -18,6 +18,7 @@ func spawn_player(id: int):
 	
 	get_node(spawn_path).call_deferred('add_child', player)
 	
+	
 
 
 func _on_spawned(node: Node) -> void:

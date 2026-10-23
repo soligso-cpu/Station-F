@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://2tmjqxlnvttd"]
+
+[ext_resource type="Script" uid="uid://bsgakm3jh4unj" path="res://Scenes/root.gd" id="1_8pvmw"]
+[ext_resource type="Texture2D" uid="uid://dww4omryxl768" path="res://icon.svg" id="2_vnucn"]
+
+[sub_resource type="Curve2D" id="Curve2D_jyf1o"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 46, 39, 0, 0, 0, 0, 214, 148, 0, 0, 0, 0, 44, 39)
+}
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pvmw"]
+size = Vector2(88.9477, 20)
+
+[node name="Root" type="Node2D" unique_id=676431424]
+script = ExtResource("1_8pvmw")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=930230012]
+curve = SubResource("Curve2D_jyf1o")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=930893550]
+position = Vector2(44.558846, 39.358322)
+rotation = -2.5714452
+progress = 401.35547
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=1238658726]
+position = Vector2(-34.06347, -1.1444092e-05)
+scale = Vector2(0.6882664, 0.16555026)
+texture = ExtResource("2_vnucn")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Path2D/PathFollow2D" unique_id=167163660]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CharacterBody2D" unique_id=1738945182]
+position = Vector2(-34.473854, 1.9073486e-06)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_8pvmw")

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://d3sh3sgmvbrs6"]
+
+[node name="Window" type="Window" unique_id=1537639389]
+oversampling_override = 1.0
+mode = 3
+
+[node name="AcceptDialog" type="AcceptDialog" parent="." unique_id=79381493]
+oversampling_override = 1.0
+mode = 3
+position = Vector2i(0, 36)
+size = Vector2i(294, 100)
+visible = true
+dialog_text = "jghaes;ruhgf;kdbveasiugh;sdkjfhb;ig"
+dialog_autowrap = true
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=1104174640]
+oversampling_override = 1.0
+initial_position = 1
+visible = true
+dialog_text = "rfegyg"
+
+[node name="Popup" type="Popup" parent="." unique_id=1211469005]
+oversampling_override = 1.0
+title = "fgxdjfgh"
+initial_position = 5
+visible = true
+
+[node name="PopupPanel" type="PopupPanel" parent="." unique_id=857253316]
+oversampling_override = 1.0
+title = "something"
+visible = true
+
+[node name="PopupMenu" type="PopupMenu" parent="." unique_id=1801614429]
+oversampling_override = 1.0
+visible = true

@@ -74,5 +74,12 @@ replication_config = SubResource("SceneReplicationConfig_fkybt")
 
 [node name="MultiplayerUI" parent="DialougueLayer" unique_id=806208750 instance=ExtResource("8_8erm5")]
 
+[node name="CheckArea" type="Area2D" parent="." unique_id=298538740]
+collision_layer = 9
+collision_mask = 9
+
+[node name="BounceArea" type="CollisionShape2D" parent="CheckArea" unique_id=456515377]
+shape = SubResource("RectangleShape2D_vgqql")
+
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

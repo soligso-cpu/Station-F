@@ -25,11 +25,6 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_player_player_shoot(player: CharacterBody2D, dir: Vector2) -> void:
-	print("HUHHHHHHHHHHH")
-	var bullet = PLAYER_BULLET_SCENE.instantiate()
-	$PlayerBullets.add_child(bullet)
-	bullet.global_position = player.global_position
-	bullet.direction = dir
+
 	
 	

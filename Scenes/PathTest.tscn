@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://d2nvdwbcj1hv7"]
+
+[ext_resource type="Script" uid="uid://djc8nqip63e4d" path="res://Scripts/pathTest.gd" id="1_4uuir"]
+[ext_resource type="Texture2D" uid="uid://dww4omryxl768" path="res://icon.svg" id="1_o0yue"]
+
+[sub_resource type="Curve2D" id="Curve2D_4uuir"]
+
+[node name="Node2D" type="Node2D" unique_id=2014253153]
+position = Vector2(6, 39)
+
+[node name="enemy" type="Node2D" parent="." unique_id=1239039463]
+script = ExtResource("1_4uuir")
+
+[node name="Path2D" type="Path2D" parent="enemy" unique_id=38771055]
+position = Vector2(-87.993256, -307.89874)
+scale = Vector2(1.5337838, 2.9113922)
+curve = SubResource("Curve2D_4uuir")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="enemy/Path2D" unique_id=409578123]
+position = Vector2(112.78856, 237.30873)
+rotation = 1.4456707
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy/Path2D/PathFollow2D" unique_id=482305777]
+visible = false
+position = Vector2(29.432278, 30.776459)
+scale = Vector2(1.7741488, 4.6261454)
+texture = ExtResource("1_o0yue")

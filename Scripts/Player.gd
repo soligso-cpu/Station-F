@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 3
-signal player_shoot (player: CharacterBody2D, dir: Vector2)
+signal player_shoot(player: CharacterBody2D, dir: Vector2)
 
 var can_shoot = true
 var velocity_decrease = 1
@@ -21,7 +21,7 @@ enum current_room {
 	HALLWAY
 }
 var cling_state = false
-
+var move = false
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -29,6 +29,13 @@ func _enter_tree():
 
 
 func _physics_process(delta: float) -> void:
+	for Area2D in $CheckArea.get_overlapping_areas():
+		if Area2D.name == "MouseArea":
+			move = false
+		elif Area2D.name == "CheckArea":
+			pass
+		else:
+			move = true
 	
 	for Area2D in $Area2D.get_overlapping_areas():
 		if not is_multiplayer_authority(): return
@@ -50,6 +57,9 @@ func _physics_process(delta: float) -> void:
 			$"..".room = current_room.LIVING_ROOM
 		if Area2D.name == "MeetingRoom":
 			$"..".room = current_room.MEETING_ROOM
+			
+		
+			
 		#if $DialougueLayer.current_room != $"..".room:
 		#	print("oioioioi")
 			#$DialougueLayer.current_room = $"..".room
@@ -60,7 +70,8 @@ func _physics_process(delta: float) -> void:
 		if cling_state == true:
 			velocity_decrease = 0.96
 			print("wep wep")
-			
+			player_shoot.emit(self, direction)
+
 			direction = global_position.direction_to(get_global_mouse_position())
 			print(direction, cling_state)
 			velocity = direction * SPEED
@@ -74,26 +85,45 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("Shoot"):
-		velocity_decrease = 0.98
-		print("pew pew")
+		velocity = direction * SPEED * 0
 		
-		direction = global_position.direction_to(get_global_mouse_position())
-		print(direction, cling_state)
-		if cling_state == false:
-			velocity = direction * -SPEED
+		
+		
+		
+		#remnants of old code
+		#player_shoot.emit(self, direction)
+		#velocity_decrease = 0.98
+		#print("pew pew")
+		#
+		#direction = global_position.direction_to(get_global_mouse_position())
+		#print(direction, cling_state)
+		#if cling_state == false:
+			#velocity = direction * -SPEED
+			#
+			#player_shoot.emit(self, direction)
+			#print("signal ran")
+		#else:
+			#velocity = direction * SPEED
+#
+		#$CooldownTimer.start()
+		#can_shoot = false
+		##direction_bounce_set = false
+	#
+	#velocity = velocity * velocity_decrease
+	
 			
-			player_shoot.emit(self, direction)
-			print("signal ran")
-		else:
-			velocity = direction * SPEED
+			
+	direction = global_position.direction_to(get_global_mouse_position())
+	velocity = direction * SPEED
 
-		$CooldownTimer.start()
-		can_shoot = false
-		#direction_bounce_set = false
 	velocity = velocity * velocity_decrease
-	move_and_collide(velocity)
+
+	if move == true:
+		
+		move_and_collide(velocity)
 	rotation = global_position.direction_to(get_global_mouse_position()).angle()
 	
+		
 
 	for body in $Area2D.get_overlapping_bodies():
 		if body.name == "TileMapLayer":
@@ -106,6 +136,7 @@ func _physics_process(delta: float) -> void:
 	
 func _on_cooldown_timer_timeout() -> void:
 	can_shoot = true
+	player_shoot.emit(self, direction)
 
 #NOTE FOR NEXT TIME
 #I want the bouncing off the walls to chnage the angle the player moves
